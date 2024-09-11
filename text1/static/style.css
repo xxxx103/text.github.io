@@ -1,0 +1,105 @@
+html {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  
+  h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+  
+  p, li {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+  }
+  
+  
+  html {
+    background-color: #f5fbfb;
+  }
+  
+  body {
+    width: 900px;
+    margin: 0 auto;
+    background-color: #e7eaeb;
+    padding: 0 20px 20px 20px;
+    border: 5px solid rgb(233, 225, 225);
+  }
+  
+  h1 {
+    margin: 0;
+    padding: 20px 0;
+    color: #e6e8ea;
+    text-shadow: 3px 3px 1px black;
+  }
+/* 标题样式 */
+h2 {
+  font-size: 24px;
+  color: #014c8c;
+  border-bottom: 2px solid #014c8c;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+  /* 图片样式 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+  header {
+			background-color: #b8b2b2;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+
+		nav {
+			background-color: #ccc;
+			padding: 10px;
+			text-align: center;
+		}
+
+		nav a {
+			text-decoration: none;
+			color: #5f6e70;
+			padding: 5px;
+			margin: 5px;
+			border-radius: 5px;
+			background-color: #fff;
+		}
+
+		nav a:hover {
+			background-color: #826060;
+			color: #fff;
+		}
+
+		section {
+			margin: 20px;
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+		}
+
+    /* 添加到 static/style.css 文件中 */
+
+.text-with-image {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  margin: 20px 0; /* 添加一些外边距 */
+}
+
+.right-aligned-image {
+  max-width: 30%; /* 设置图片的最大宽度 */
+  height: auto; /* 保持图片的原始比例 */
+  margin-left: 20px; /* 在图片和文字之间添加间隔 */
+}
+
+figcaption {
+  flex: 1; /* 允许文字部分扩展以填满剩余空间 */
+  text-align: justify; /* 对齐文字 */
+}
