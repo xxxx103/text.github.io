@@ -1,0 +1,30 @@
+/* 设置html和body的margin为0 */
+html, body {
+    margin: 0;
+  }
+  
+  /* 设置html的字体为sans-serif，高度为100% */
+  html {
+    font-family: sans-serif;
+    height: 100%;
+  }
+  
+  /* 设置body的overflow为hidden，高度继承自html */
+  body {
+    overflow: hidden;
+    height: inherit;
+  }
+  
+  /* 设置h1的字体大小为2rem，字母间距为-1px，绝对定位，margin为0，top为-4px，right为5px */
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    position: absolute;
+    margin: 0;
+    top: -4px;
+    right: 5px;
+  
+    /* 设置文字颜色为透明，文字阴影为白色 */
+    color: transparent;
+    text-shadow: 0 0 4px rgb(231, 233, 239);
+  }
