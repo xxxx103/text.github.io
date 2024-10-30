@@ -1,0 +1,28 @@
+body {
+    background: #458aa5;
+    display: flex;
+    justify-content: center;
+    }
+  
+    #sheep-container {
+    width: 90vh;
+    display: grid;
+    place-items: center;
+    grid-template-areas:
+      "a1 . ."
+      ". a2 ."
+      ". . a3";
+  }
+  
+  #sheep1 {
+    grid-area: a1;
+  }
+  
+  #sheep2 {
+    grid-area: a2;
+  }
+  
+  #sheep3 {
+    grid-area: a3;
+  }
+  
