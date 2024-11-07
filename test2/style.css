@@ -1,0 +1,61 @@
+body {
+    background-image: url('start.jpg'); /* 确保替换 'start.jpg' 为你的图片文件路径 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Courier New', monospace; /* 更改为更具冒险感的字体 */
+    color: #ffffff; /* 文字颜色改为白色，以便在深色背景上更醒目 */
+    text-align: center;
+    padding-top: 50px;
+}
+
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* 使开始屏幕填满整个视口 */
+}
+
+h1 {
+    color: #ffd700; /* 标题颜色改为金色 */
+    font-size: 64px;
+    text-shadow: 2px 2px 4px #000000; /* 添加文字阴影效果 */
+}
+
+button#start-button {
+    background-color: #35525a; /* 按钮背景颜色 */
+    color: white; /* 按钮文字颜色 */
+    padding: 15px 30px; /* 增加按钮的内边距 */
+    font-size: 20px; /* 增加按钮文字大小 */
+    border: none; /* 移除按钮边框 */
+    border-radius: 5px; /* 添加圆角边框 */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 添加背景颜色过渡效果 */
+}
+
+button#start-button:hover {
+    background-color: #45a049; /* 鼠标悬停时按钮背景颜色变化 */
+}
+
+#clue, #treasure {
+    margin: 20px 0;
+    font-style: italic;
+    color: #ffffff; /* 线索和宝藏文字颜色改为白色 */
+    text-shadow: 1px 1px 2px #000000; /* 添加文字阴影效果 */
+}
+
+#treasure {
+    font-weight: bold;
+    font-size: 24px; /* 宝藏文字大小加大 */
+}
+
+.error {
+    color: #ff4d4d; /* 错误信息颜色改为更柔和的红色 */
+    font-weight: bold; /* 错误信息加粗 */
+}
+
+canvas {
+    display: none; /* 默认不显示canvas，根据游戏逻辑决定是否显示 */
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻宝游戏</title>
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+    <div id="game-screen">
+        <button id="temple-button">神庙</button>
+        <div id="clue" class="clickable"></div>
+        <div id="treasure"></div>
+        <div id="error" class="error"></div>
+        <img id="book" src="book.png" alt="Book" class="clickable">
+    </div>
+    <div id="dialogue-box" class="hidden">
+        <div id="output"></div>
+        <button id="next-button">Next</button>
+    </div>
+    <script>
+        document.getElementById('temple-button').addEventListener('click', function() {
+            window.location.href = 'temple.html';
+        });
+    </script>
+    <script src="treasure.js"></script>
+</body>
+</html>
