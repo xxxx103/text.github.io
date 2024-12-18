@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻宝游戏</title>
+    <link rel="stylesheet" href="temple.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        #dialogue-box {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            z-index: 20;
+            text-align: center;
+        }
+        .treasure-item {
+            position: absolute;
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="player-nickname" style="position: absolute; top: 10px; left: 10px;">玩家：游客</div>
+    <div id="temple">
+        <button id="library-button">图书馆</button>
+        <img id="box" src="box.png" alt="神秘箱子" class="treasure-item">
+        <img id="guard" src="guard.png" alt="神庙守卫" class="hidden treasure-item">
+        <img id="treasure" src="treasure.png" alt="宝藏" class="hidden treasure-item">
+    </div>
+
+    <div id="dialogue-box" class="hidden">
+        <div id="output"></div>
+        <button id="next-button">Next</button>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="background_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // TreasureMap 类定义
+        class TreasureMap {
+            static searchTemple() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const random = Math.random();
+                        if (random < 0.5) {
+                            reject(gameAssets.guard);
+                        }
+                        resolve(gameAssets.box);
+                    }, 2000);
+                });
+            }
+
+            static openTreasureBox() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve(gameAssets.treasure);
+                    }, 1000);
+                });
+            }
+            
+        }
+
+        document.getElementById('box').addEventListener('click', async function() {
+            const dialogueBox = document.getElementById('dialogue-box');
+            const output = document.getElementById('output');
+            const nextButton = document.getElementById('next-button');
+            const box = document.getElementById('box');
+            const guard = document.getElementById('guard');
+            const treasure = document.getElementById('treasure');
+
+            try {
+                const result = await TreasureMap.searchTemple();
+                output.innerText = result;
+                dialogueBox.classList.remove('hidden');
+                nextButton.style.display = 'block'; // 显示 Next 按钮
+
+                guard.classList.add('hidden');
+                treasure.classList.add('hidden');
+
+                if (result === "找到了一个神秘的箱子...") {
+                    // 移动并放大 box 图片到屏幕中央
+                    box.style.position = 'fixed';
+                    box.style.left = '50%';
+                    box.style.bottom = '20%'; // 将图片放置在屏幕下方
+                    box.style.transform = 'translate(-50%, 0) scale(1.5)'; // 放大图片
+                    box.style.zIndex = 10; // 确保图片在对话框上方
+                    box.src = 'box.png';
+
+                    // 点击 box 图片后更换为 treasure.png 并更新对话框文字
+                    box.onclick = async function() {
+                        const treasureMessage = await TreasureMap.openTreasureBox();
+                        box.src = 'treasure.png'; // 更换图片
+                        output.innerText = treasureMessage; // 更新对话框文字
+                        nextButton.style.display = 'none'; // 隐藏 Next 按钮
+                        box.onclick = null; // 移除点击事件监听器
+                    };
+                } else{
+                    // 显示守卫图片
+                    guard.src = 'guard.png';
+                    guard.classList.remove('hidden');
+                    guard.style.position = 'fixed';
+                    guard.style.left = '10%';
+                    guard.style.bottom = '20%'; // 将图片放置在屏幕下方
+                    guard.style.transform = 'translateY(0)';
+                    guard.style.zIndex = 10;
+
+                    // 点击 Next 按钮后弹出 Game Over
+                    nextButton.onclick = function() {
+                        alert('Game Over');
+                        dialogueBox.classList.add('hidden'); // 隐藏对话框
+                        nextButton.style.display = 'none'; // 隐藏 Next 按钮
+                    };
+                 }
+            } catch (error) {
+                output.innerText = error;
+                dialogueBox.classList.remove('hidden');
+                nextButton.style.display = 'block'; // 显示 Next 按钮
+                nextButton.onclick = function() {
+                    alert('Game Over');
+                    dialogueBox.classList.add('hidden'); // 隐藏对话框
+                    nextButton.style.display = 'none'; // 隐藏 Next 按钮
+                };
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('background-music');
+            music.play();
+             // 加载玩家昵称
+            const storedNickname = localStorage.getItem('nickname');
+            if (storedNickname) {
+                document.getElementById('player-nickname').textContent = '玩家：' + storedNickname;
+            }
+        });
+        document.getElementById('library-button').addEventListener('click', function() {
+            window.location.href = 'library.html';
+        });
+    </script>
+</body>
+</html>

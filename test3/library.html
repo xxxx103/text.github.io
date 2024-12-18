@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻宝游戏</title>
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+    <div id="player-nickname" style="position: absolute; top: 10px; left: 10px;">玩家：游客</div>
+    <div id="game-screen">
+        <button id="temple-button">神庙</button>
+        <div id="clue" class="clickable"></div>
+        <div id="treasure"></div>
+        <div id="error" class="error"></div>
+        <img id="book" src="book.png" alt="Book" class="clickable">
+    </div>
+    <div id="dialogue-box" class="hidden">
+        <div id="output"></div>
+        <button id="next-button">Next</button>
+    </div>
+    <audio id="background-music" loop>
+        <source src="background_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        document.getElementById('temple-button').addEventListener('click', function() {
+            window.location.href = 'temple.html';
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('background-music');
+            music.play();
+             // 加载玩家昵称
+            const storedNickname = localStorage.getItem('nickname');
+            if (storedNickname) {
+                document.getElementById('player-nickname').textContent = '玩家：' + storedNickname;
+            }
+        });
+    </script>
+    <script src="treasure.js"></script>
+</body>
+</html>

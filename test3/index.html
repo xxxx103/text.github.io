@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>寻宝游戏</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="player-nickname" style="position: absolute; top: 10px; left: 10px;">玩家：游客</div>
+        <div id="start-screen">
+            <h1>寻宝游戏</h1>
+            <button id="start-button">开始游戏</button>
+            <button id="login-button">登录</button>
+            <button id="logout-button" style="display: none;">退出登录</button>
+            <div id="clue"></div>
+            <div id="treasure"></div>
+            <div id="error" class="error"></div>
+        </div>
+        <canvas></canvas>
+        <audio id="background-music" loop>
+            <source src="background_music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <script>
+            // 登录按钮事件监听器
+            document.getElementById('login-button').addEventListener('click', function() {
+                const playerId = prompt('请输入玩家ID:');
+                const nickname = prompt('请输入昵称:');
+                if (playerId && nickname) {
+                    // 存储玩家信息
+                    localStorage.setItem('playerId', playerId);
+                    localStorage.setItem('nickname', nickname);
+                    // 显示昵称
+                    document.getElementById('player-nickname').textContent = nickname;
+                    // 显示开始游戏按钮
+                    document.getElementById('login-button').style.display = 'none';
+                    document.getElementById('start-button').style.display = 'inline';
+                    // 显示退出登录按钮
+                    document.getElementById('logout-button').style.display = 'inline';
+                }
+            });
+            // 退出登录按钮事件监听器
+            document.getElementById('logout-button').addEventListener('click', function() {
+                // 清除玩家信息
+                localStorage.removeItem('playerId');
+                localStorage.removeItem('nickname');
+                // 更新页面显示
+                document.getElementById('player-nickname').textContent = '玩家：';
+                document.getElementById('login-button').style.display = 'inline';
+                document.getElementById('start-button').style.display = 'none';
+                document.getElementById('logout-button').style.display = 'none';
+            });
+            
+            document.getElementById('start-button').addEventListener('click', function() {
+                window.location.href = 'library.html';
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                const music = document.getElementById('background-music');
+                music.play();
+                const storedNickname = localStorage.getItem('nickname');
+            if (storedNickname) {
+                document.getElementById('player-nickname').textContent = storedNickname;
+                document.getElementById('login-button').style.display = 'none';
+                document.getElementById('start-button').style.display = 'inline';
+            }
+            });
+        </script>
+        <script src="treasure.js"></script>
+    </body>
+</html>
